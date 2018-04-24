@@ -48,18 +48,14 @@ class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         stack<int> index;
-        vector<int> warm;
-        for(int i=0; i<temperatures.size();i++){warm.push_back(0);}
+        vector<int> warm(temperatures.size(),0);
         index.push(0);
         for(int i=1;i<temperatures.size();i++){   
-            while(!index.empty()){
-                if(temperatures[i]>temperatures[index.top()]){
+            while(!index.empty()&&temperatures[i]>temperatures[index.top()]){              
                     warm[index.top()]=i-index.top();
                     index.pop();
-                }
-                else {index.push(i);break;}           
             }
-            if(index.empty()){index.push(i);}
+            index.push(i);
         }
         
         return warm;
