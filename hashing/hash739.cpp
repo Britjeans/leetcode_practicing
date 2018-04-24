@@ -1,3 +1,4 @@
+/*stupid version*/
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
@@ -33,6 +34,32 @@ public:
             }
             temp=index;
             pos.pop();              
+        }
+        
+        return warm;
+        
+    }
+};
+
+
+/*stack version*/
+
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        stack<int> index;
+        vector<int> warm;
+        for(int i=0; i<temperatures.size();i++){warm.push_back(0);}
+        index.push(0);
+        for(int i=1;i<temperatures.size();i++){   
+            while(!index.empty()){
+                if(temperatures[i]>temperatures[index.top()]){
+                    warm[index.top()]=i-index.top();
+                    index.pop();
+                }
+                else {index.push(i);break;}           
+            }
+            if(index.empty()){index.push(i);}
         }
         
         return warm;
