@@ -1,3 +1,41 @@
+//stack version
+class Solution {
+public:
+    void goAlongLeftBranch(stack<TreeNode* > &traverse,TreeNode* node){
+        while(node!=NULL){ 
+            traverse.push(node);
+            node=node->left;
+        } 
+    }
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> inorder;
+        bool mark=true;
+        stack<TreeNode*> traverse;
+        TreeNode* node=root;
+        while(true){   
+           if(mark)
+           goAlongLeftBranch(traverse,node);
+           if(traverse.empty())break;
+           node=traverse.top();
+           inorder.push_back(node->val);       
+           if(node->right!=NULL){
+               node=node->right;
+               mark=true;
+              
+           }           
+           else{
+               mark=false;
+           }
+           traverse.pop();
+        }
+
+        
+        return inorder;
+    }
+};
+
+
+//morris traverse
 // Java program to implement Morris preorder traversal
  
 // A binary tree node
