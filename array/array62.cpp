@@ -35,3 +35,20 @@ public:
         return path(m-1,n-1);
     }
 };
+//iteration solution
+class Solution {
+public:
+
+    int uniquePaths(int m, int n) { 
+        //vector<vector<int> > path(m, vector<int> (n, 1));
+        if(m>n) return uniquePaths(n,m);
+        vector<int> cur(m,1);
+        for (int i = 1; i < n; i++){
+             for (int j =1; j < m; j++){
+                //path[i][j] = path[i - 1][j] + path[i][j - 1];
+                cur[j]=cur[j]+cur[j-1];
+            }
+        }
+        return cur[m-1];//path[m - 1][n - 1];
+    }
+};
