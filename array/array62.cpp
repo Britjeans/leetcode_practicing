@@ -1,4 +1,5 @@
 //time limited exceed
+/*solution 1*/
 class Solution {
 public:
     void backtrack(int & count,int r,int d){
@@ -20,5 +21,17 @@ public:
         int count=0;
         backtrack(count,m-1,n-1);
         return count;
+    }
+};
+/*solution 2*/
+class Solution {
+public:
+    int path(int m,int n){
+        if(m==0||n==0)
+            return 1;
+        return path(m-1,n)+path(m,n-1);
+    }    
+    int uniquePaths(int m, int n) {        
+        return path(m-1,n-1);
     }
 };
