@@ -35,10 +35,12 @@ public:
             if(node->left==NULL&&node->right==NULL){
                 
                 if(node->val==sum) {
+                    vector<int> t(temp.size(),0);
+                    t[0]=temp[0];
                     for(int i=temp.size()-1;i>0;i--){
-                        temp[i]=temp[i]-temp[i-1];
+                        t[i]=temp[i]-temp[i-1];
                     }
-                    res.push_back(temp);
+                    res.push_back(t);
                     storage.pop();
                     temp.pop_back();
                     while(!storage.empty()&&!s.empty()&&storage.top()->right!=s.top()){
