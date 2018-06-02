@@ -23,3 +23,21 @@ public:
         return max_h;
     }
 };
+//still slow
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        priority_queue<int> q;
+        for(int i=0;i<citations.size();++i){
+            q.push(citations[i]);
+        }
+        int h=0;
+        while(!q.empty()){
+            int h_max=q.top();
+            if(h_max<=h) return h;
+            q.pop();
+            ++h;            
+        }
+        return citations.size();
+    }
+};
