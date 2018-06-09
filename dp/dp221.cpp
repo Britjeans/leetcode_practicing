@@ -1,3 +1,4 @@
+//none dp version solution
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
@@ -23,3 +24,4 @@ public:
         
     }
 };
+//dp version
